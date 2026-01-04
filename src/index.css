@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  Custom styles and overrides 
+  We aim for a subtle, modern Facebook aesthetic (Meta theme)
+*/
+
+:root {
+  --color-primary: 24, 119, 242; /* Facebook Blue */
+  --color-secondary: 0, 164, 100; /* Facebook Green/Success */
+  --color-bg-light: 240, 242, 245; /* Light background for body/app */
+  --color-bg-card: 255, 255, 255; /* White background for cards */
+  --color-text-primary: 5, 5, 5;
+  --color-text-secondary: 101, 103, 107;
+  --color-border: 204, 204, 204;
+  --color-hover-bg: 220, 221, 223;
+  --color-shadow: 0, 0, 0, 0.1;
+}
+
+/* Base Styles */
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: rgb(var(--color-bg-light));
+  color: rgb(var(--color-text-primary));
+  line-height: 1.35;
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Utility classes for consistency */
+.text-primary-facebook {
+  color: rgb(var(--color-primary));
+}
+
+.bg-primary-facebook {
+  background-color: rgb(var(--color-primary));
+}
+
+.hover\:bg-primary-darker:hover {
+  background-color: rgb(18, 100, 180);
+}
+
+.text-secondary-meta {
+  color: rgb(var(--color-text-secondary));
+}
+
+/* Card and Panel Styling */
+.card-base {
+  background-color: rgb(var(--color-bg-card));
+  border-radius: 0.5rem; /* 8px */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Custom Scrollbar for better aesthetics, primarily for sidebars and feeds */
+/* Note: This might not work perfectly across all browsers (especially Safari/Firefox) but targets modern Chrome/Edge */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgb(176, 179, 184); /* A light grey */
+  border-radius: 10px;
+  border: 2px solid rgb(var(--color-bg-light));
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(140, 142, 145);
+}
+
+/* Global focus state override for accessibility (blue border) */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--color-primary));
+  outline-offset: 2px;
+}
+
+/* Specific component overrides */
+
+/* Header/Navigation bar */
+.facebook-header {
+  height: 56px; /* Standard Facebook header height */
+  border-bottom: 1px solid rgb(var(--color-border), 0.5);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Input overrides for Facebook style search bars/text areas */
+.input-facebook {
+  @apply w-full rounded-full py-2 px-4 bg-gray-100 border border-transparent transition-colors duration-200;
+}
+
+.input-facebook:focus {
+  @apply bg-white border-primary-facebook;
+}
+
+/* Button overrides */
+.btn-primary-facebook {
+  @apply bg-primary-facebook text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 shadow-md;
+}
+
+.btn-primary-facebook:hover {
+  @apply bg-primary-darker;
+}
+
+.btn-secondary-facebook {
+  @apply text-primary-facebook font-semibold py-2 px-4 rounded-lg transition-colors duration-200 hover:bg-gray-100;
+}
+
+/* Layout adjustments for main content area to utilize space effectively */
+.main-content-layout {
+  min-height: calc(100vh - 56px); /* Full viewport height minus header */
+  padding-top: 56px; /* Compensate for fixed header */
+}
